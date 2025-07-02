@@ -5,9 +5,9 @@ import project3 from "../assets/projects/project3.png";
 import { useState } from 'react';
 
 const projects = [
-  { image: project1,link:"" },
-  { image: project2,link:"" },
-  { image: project3,link:"" },
+  { image: project1, link: "" },
+  { image: project2, link: "" },
+  { image: project3, link: "" },
 ];
 
 const WorkShowcase = () => {
@@ -34,7 +34,10 @@ const WorkShowcase = () => {
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
-            transform: `translateX(calc(50% - ${(current + 0.5) * 71}vw))`,
+            transform:
+              window.innerWidth >= 768
+                ? `translateX(calc(50% - ${(current + 0.5) * 71}vw))`
+                : `translateX(calc(50% - ${(current + 0.5) * 80}vw))`, // Disable translateX on mobile
           }}
         >
           {projects.map((project, index) => (
