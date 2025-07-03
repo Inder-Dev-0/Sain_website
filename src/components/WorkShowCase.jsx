@@ -19,6 +19,15 @@ const WorkShowcase = () => {
 
   };
 
+  // Dynamically compute width based on screen size
+  const getResponsiveCardWidth = () => {
+    if (window.innerWidth < 640) return "100"; // mobile
+    if (window.innerWidth <= 1024) return "96"; // tablet
+    if (window.innerWidth <= 1440) return "50"; // large screen
+    if (window.innerWidth <= 2560) return "45"; // x-large screen
+    return "70"; // desktop
+  };
+
   const getCardStyles = (index) => {
     return index === current ? "opacity-100 z-30" : "scale-75 opacity-60 z-10 cursor-pointer";
   };
@@ -34,10 +43,7 @@ const WorkShowcase = () => {
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
-            transform:
-              window.innerWidth >= 768
-                ? `translateX(calc(50% - ${(current + 0.5) * 71}vw))`
-                : `translateX(calc(50% - ${(current + 0.5) * 80}vw))`, // Disable translateX on mobile
+            transform: `translateX(calc(50% - ${(current + 0.5) * getResponsiveCardWidth()}vw))`,
           }}
         >
           {projects.map((project, index) => (
@@ -46,8 +52,8 @@ const WorkShowcase = () => {
               className={`flex-shrink-0 transition-all duration-500 ease-in-out ${getCardStyles(index)}`}
               onClick={() => handleClick(index)}
               style={{
-                width: "80vw",
-                height: "45vw",
+                width: `${getResponsiveCardWidth()}vw`,
+                height: "fit-content",
                 maxHeight: "80vh",
                 maxWidth: "142.22vh",
               }}
@@ -57,6 +63,7 @@ const WorkShowcase = () => {
           ))}
         </div>
       </div>
+
 
       {/* Arrows */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-6 z-50">
