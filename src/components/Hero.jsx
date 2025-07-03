@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './Navbar';
 import bg from '../assets/gradient.png'
 
@@ -6,7 +5,7 @@ export default function HeroSection() {
   return (
     <div className={`md:min-h-screen z-3 relative w-full flex flex-col`}>
       {/* Navbar */}
-      <img src={bg} className='absolute h-[80vh] sm:h-[150vh] object-cover -translate-x-1/2  left-1/2' alt="" />
+      <img src={bg} className='absolute h-[80vh] sm:h-[150vh] object-cover -translate-x-1/2  left-1/2 pointer-events-none' alt="" />
       <Navbar/>
       {/* Hero Content */}
       <main className="flex flex-col items-center justify-center text-center px-4 py-20 relative">
